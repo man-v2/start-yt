@@ -19,7 +19,7 @@ public class Radios {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "iterm_id")
+	@Column(name = "iterm_id", insertable = false, updatable = false)
 	private Integer itermId;
 	
 	private String name;
@@ -29,13 +29,13 @@ public class Radios {
 	private int size ;
 	
 	private String site;
-	
+	/*
 	//可选属性optional=false,表示iterm不能为空。删除radios，不影响iterm
 	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH},
 			optional = false)
 	//设置在yt_radios表中的关联字段(外键)
 	@JoinColumn(name="iterm_id")
-	private Iterm iterm;
+	private Iterm iterm;*/
 
 	public Integer getId() {
 		return id;
@@ -85,11 +85,4 @@ public class Radios {
 		this.site = site;
 	}
 
-	public Iterm getIterm() {
-		return iterm;
-	}
-
-	public void setIterm(Iterm iterm) {
-		this.iterm = iterm;
-	}
 }

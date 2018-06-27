@@ -9,8 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 
@@ -22,6 +25,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "yt_iterm")
+// 参考：https://blog.csdn.net/lihushiwoa/article/details/21973695
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"}) 
 public class Iterm {
 
 	@Id
@@ -39,8 +44,10 @@ public class Iterm {
 	//当删除Iterm，会级联删除 对应的radios
     //拥有mappedBy注解的实体类为关系被维护端
      //mappedBy="iterm"中的iterm是Radios中的iterm属性
-	@OneToMany(mappedBy="iterm", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY)
+	/*@OneToMany(mappedBy="iterm", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY)*/
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name = "iterm_id")
 	private List<Radios> radioList;
 
 	public Integer getId() {
