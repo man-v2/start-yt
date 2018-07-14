@@ -18,4 +18,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("select u from User u where u.id=?")
 	User findById(Integer id);
 
+	User findByName(String name);
 }
